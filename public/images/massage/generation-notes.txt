@@ -1,0 +1,7 @@
+Tool: built-in image_gen (imagegen skill)
+Asset: iphone-journal.webp
+Source: user-supplied screenshot 6 (supporting screen insert)
+Final prompt:
+Use case: product-mockup. Asset type: photographic hero for a Korean massage work journal iPhone app landing page. Input image: supporting screen insert, preserve the supplied screenshot faithfully including its Korean text and dark forest green interface, 1 session, 50 minutes, 47,500 won. Primary request: create an elegant photorealistic product photograph of a single modern black titanium iPhone standing upright on a pale warm limestone block, slight three-quarter angle, with the supplied screenshot visible on its screen. Phone fully visible, nearly front-facing so interface remains readable. Scene: restrained warm ivory studio background, subtle sage green shadow, soft daylight from upper left, tactile limestone, premium calm editorial product photography. Portrait composition 4:5, phone fills 83 percent of image height, no props, no extra text or labels outside the screen, no watermark, no hands. Preserve screenshot layout and do not invent UI.
+
+The other three WebP assets are optimized copies of supplied screenshots 3, 4 and 5.
