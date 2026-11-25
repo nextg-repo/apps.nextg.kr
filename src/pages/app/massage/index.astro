@@ -85,7 +85,7 @@ const features = [
           </address>
         </section>
       </main>
-      <footer><a href="/">NEXTG <span>Apps</span></a><p>안마사 업무일지 · 매일의 수고를 기록합니다.</p><span>© {new Date().getFullYear()} NEXTG</span></footer>
+      <footer><a href="/">NEXTG <span>Apps</span></a><p>안마사 업무일지 · 매일의 수고를 기록합니다.</p><a class="privacy-link" href="/app/massage/privacy-policy/">개인정보 처리방침</a><span>© {new Date().getFullYear()} NEXTG</span></footer>
     </MassageTheme>
   </body>
 </html>
@@ -164,6 +164,7 @@ const features = [
   .contact dd a span { flex-shrink: 0; }
   footer { max-width: 1184px; margin: auto; padding: 25px 0 35px; border-top: 1px solid var(--bg-focused); display: flex; justify-content: space-between; align-items: center; gap: 20px; color: var(--fg-lighter); font-size: 11px; }
   footer a { font-size: 17px; font-weight: 800; letter-spacing: -.04em; color: var(--color-logo); } footer a span { font-weight: 400; }
+  footer .privacy-link { font-size: 12px; font-weight: 500; letter-spacing: inherit; }
   @media (min-width: 1440px) { .hero { padding-top: 75px; padding-bottom: 75px; } }
   @media (max-width: 1000px) {
     .site-header { padding-inline: 28px; } .hero { padding-inline: 28px; gap: 30px; } h1 { font-size: 46px; }
