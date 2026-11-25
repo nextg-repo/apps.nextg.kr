@@ -1,0 +1,53 @@
+---
+interface Props {
+  monochrome?:boolean
+}
+const {
+  monochrome = false
+} = Astro.props
+
+---
+
+<div role="img" aria-label="넥스트지 Apps" class="logo-wrap">
+    <div class:list={[
+      "logo",{ monochrome }
+    ]} />
+    <div class="apps">Apps</div>
+</div>
+
+<style>
+  
+  .logo-wrap { 
+    
+    display: flex;
+    gap: 0.5em;
+    --colored:    url("/logo-color-light.svg");
+    --mono:       url("/logo-light.svg");
+    
+    @media(prefers-color-scheme: dark) {
+      --colored:  url("/logo-color-dark.svg");
+      --mono:     url("/logo-dark.svg");
+    }
+
+    .logo {
+      background: var(--colored);
+      background-repeat: no-repeat; background-size: contain;
+      background-position: center;
+      width: 6rem;
+      height: calc(6rem / 16 * 9);
+
+      &.monochrome {
+        background: var(--mono);
+      }
+    }
+
+    .apps {
+      align-self: top;
+      margin-top: .5em; font-size: 1.325em;
+      font-weight: 900;
+      color: var(--color-logo);
+      cursor: default;
+      user-select: none;
+    }
+  }
+</style>

@@ -1,0 +1,146 @@
+---
+type GridItem = {
+  icon_name:string,
+  app_name:string,
+  links?:{label:string, url:string}[]
+}
+interface Props {
+  items:GridItem[]
+}
+
+const {items} = Astro.props;
+---
+
+<div class:list={["app-grid"]}>
+  {items.map(e=>{
+    
+    return <div class="item">
+      <button 
+        aria-expanded="false"
+        aria-haspopup="true"
+        aria-label={`${e.app_name}`}
+        disabled={!e.links || e.links.length == 0}>
+        <div class="appicon"
+          style={`--icon:url(/appicons/${e.icon_name}.png)`}
+          />
+        <strong>{e.app_name}</strong>
+      </button>
+      {e.links && e.links?.length > 0 && 
+      <ul class="link-list">
+        {e.links?.map(link=>{
+          return <li>
+            <a href={link.url}
+                target="_blank" aria-label={`${link.label}`} title="새 탭 열림">
+                <span class="label">{link.label}</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </li>
+        })}
+      </ul>}
+      
+    </div>
+  })}
+</div>
+<script>
+  const icons = [...document.querySelectorAll(".app-grid .item")] as HTMLElement[];
+  let expandedIndex = -1;
+  function updateListPosition(icon:HTMLElement, list:HTMLElement) {
+    const height = icon.getBoundingClientRect()?.height ?? 0;
+
+    list.style.top = `calc(${height ?? 0}px + 0.5em)`;
+  }
+
+  window.addEventListener("resize",()=>{
+      icons.forEach(icon=>{
+        const list = icon.querySelector(".link-list") as HTMLElement;
+        updateListPosition(icon,list);
+      });
+  })
+  window.addEventListener("click",(e)=>{
+    const target = e.target as HTMLElement;
+    const isGridButton = target.closest(".item>button[aria-expanded=true]");
+    if(!isGridButton) {
+      toggleExpanded(-1);
+    }
+  })
+  const toggleExpanded = (index:number)=>{
+    expandedIndex = index == expandedIndex ? -1 : index;
+    icons.forEach((icon, iconIndex)=>{
+      const button = icon.querySelector("button") as HTMLButtonElement;
+      
+      button.ariaExpanded = `${iconIndex == expandedIndex}`;
+    })
+  }
+
+  icons.forEach((icon,index)=>{
+    const list = icon.querySelector(".link-list") as HTMLElement;
+    const button = icon.querySelector("button") as HTMLButtonElement;
+    button.addEventListener("click",()=>{ 
+      toggleExpanded(index);
+     });
+    updateListPosition(icon,list);
+  });
+</script>
+<style>
+  .app-grid {
+    display: flex; 
+    min-height:320px;
+    max-width: 500px;
+    font-size: 0.9em;
+    gap: 1.5em; padding: 1em;
+    .item {
+      display: flex; height: fit-content; position: relative;
+      align-items: center;gap: 0.2em;
+      flex-direction: column;
+      
+      button {
+        width: 100%; height: 100%; padding: 0.4em;
+        cursor: pointer;border-radius: 1.5em;
+        &:disabled { cursor: not-allowed;}
+      }
+      .appicon {
+        background-image: var(--icon);
+        width: 80px; height: 80px;
+        background-size: cover; background-repeat: no-repeat;
+        background-position: center;
+        border-radius: 1.5em;
+      }
+      strong { font-size: 0.8em;}
+    }
+    .link-list { display: none; }
+    
+    .item [aria-expanded=true] {
+      background-color: color-mix(in srgb, var(--color-logo) 20%, transparent);
+    }
+
+    .item:has([aria-expanded=true]) .link-list {
+      display: flex; flex-direction: column;
+      position: absolute; bottom: 0;
+      background-color: var(--bg-tertiary);
+      width: 150px; min-height: fit-content; z-index: 99;
+      border-radius: 1em;
+      filter: drop-shadow(1px 0 2px rgb(0 0 0 / .5));
+
+      &::after {
+        content:""; background-color: inherit; position: absolute; z-index: -1;
+        height: 1em; width: 1em; 
+        top: -0.5em; left:0; right:0; margin-inline: auto;
+        transform: rotate(-45deg);
+      }
+
+      li>a { 
+        display: flex; width: 100%; padding: 0.5em;
+        background-color: var(--bg-tertiary);
+        border-radius: 1em; outline-offset: -.1em;
+        .label {
+          margin-right: auto;
+        }
+      }
+      
+    }
+
+    @media (max-width:500) {
+      grid-template-columns: repeat(5,60px);
+    }
+  }
+</style>
