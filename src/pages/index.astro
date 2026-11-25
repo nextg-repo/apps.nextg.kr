@@ -1,0 +1,58 @@
+---
+import AppIconGrid from "@/components/AppIconGrid.astro";
+import Header from "../components/Header.astro";
+import DefaultTheme from "@/components/layout/DefaultTheme.astro";
+
+---
+
+<html lang="ko">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>넥스트지 Apps</title>
+	</head>
+	<body>
+		<DefaultTheme>
+			<div id="wrapper">
+				<Header />
+				<main>
+					<h2>넥스트지 출시 앱 목록</h2>
+					<AppIconGrid
+						items={[
+								{
+									app_name:"남산산책길", icon_name:"namsan",
+									links:[
+										{label:"소개 페이지", url:"https://namsan.nextg.kr"},
+										{label:"앱 다운로드(iOS)", url:"https://apps.apple.com/kr/app/%EB%82%A8%EC%82%B0%EC%82%B0%EC%B1%85%EA%B8%B8/id6761149317"},
+									]
+								},
+								{app_name:"안마사 업무일지", icon_name:"massage", links:[{label:"소개 페이지", url:"/app/massage/"}]}
+							]}
+					/>
+				</main>
+			</div>
+		</DefaultTheme>
+	</body>
+</html>
+
+<style>
+	#wrapper {
+		display: flex;
+		min-height: 100vh;
+		flex-direction: column;
+	}
+	main {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex:1;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 1em; padding: 1em;
+	}
+</style>
+
