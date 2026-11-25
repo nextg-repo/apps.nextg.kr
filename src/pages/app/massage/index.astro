@@ -1,0 +1,192 @@
+---
+import MassageTheme from "@/components/layout/MassageTheme.astro";
+
+const features = [
+  { number: "01", title: "오늘의 기록이, 오늘의 합계로", text: "안마 업무를 추가하면 건수와 시간, 설정한 단가에 따른 예상 금액을 한눈에 확인할 수 있어요.", tag: "하루 업무 현황", image: "monthly", alt: "안마 건수 1건, 시간 50분, 예상 금액 47,500원을 보여주는 월간 현황", heading: "하루를 넘어, 한 달의 흐름까지", detail: "월별 합계와 날짜별 업무 건수를 함께 살펴보세요. 지난 기록도 필요한 날짜로 돌아가 확인할 수 있어요." },
+  { number: "02", title: "필요한 기록만 빠르게", text: "지명 업무, 호실, 조회 기간으로 조건을 좁혀 원하는 업무 내역을 찾아보세요.", tag: "빠른 조회", image: "search", alt: "지명 업무, 호실, 기간 필터와 선택한 조건의 합계를 보여주는 빠른 조회 화면", heading: "찾고 싶은 기록에 바로 도착", detail: "지명 업무만 따로 보고 싶을 때도, 특정 호실의 업무를 모아 보고 싶을 때도. 선택한 조건의 건수와 시간, 예상 금액을 함께 보여줘요." },
+  { number: "03", title: "내 업무 방식에 맞게", text: "안마 단가와 자주 사용하는 호실을 설정하고, 쌓인 기록은 파일로 내보내세요.", tag: "설정과 내보내기", image: "settings", alt: "안마 단가, 자주 사용하는 호실, CSV 파일 내보내기를 설정하는 화면", heading: "단가는 내 기준으로, 기록은 파일로", detail: "10분당 단가를 설정하면 업무 시간에 맞춰 예상 금액을 계산해요. CSV로 내보낸 기록은 엑셀에서도 열 수 있어요." },
+];
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="안마사와 안마사업장 원장을 위한 간단한 업무일지. 오늘의 안마 업무를 기록하고 건수, 시간, 예상 금액을 자동으로 확인하세요." />
+    <meta property="og:title" content="안마사 업무일지 — 오늘의 수고를, 간단한 기록으로." />
+    <meta property="og:description" content="안마 업무를 기록하면 건수부터 시간, 예상 금액까지 한눈에. 안마사와 안마사업장을 위한 일지 앱." />
+    <meta property="og:image" content="/images/massage/iphone-journal.webp" />
+    <link rel="icon" href="/appicons/massage.png" />
+    <title>안마사 업무일지 | 넥스트지 Apps</title>
+  </head>
+  <body>
+    <MassageTheme>
+      <a class="skip-link" href="#main">본문으로 바로가기</a>
+      <header class="site-header">
+        <a class="brand" href="/app/massage/" aria-label="안마사 업무일지 홈">
+          <img src="/appicons/massage.png" width="40" height="40" alt="" />
+          <span>안마사 업무일지</span>
+        </a>
+        <nav aria-label="페이지 메뉴">
+          <a href="#features">주요 기능</a>
+          <a href="#screens">앱 둘러보기</a>
+          <a class="all-apps" href="/">넥스트지 Apps <span aria-hidden="true">↗</span></a>
+        </nav>
+      </header>
+
+      <main id="main">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="dot" aria-hidden="true"></span> 안마사와 안마사업장을 위한 일지</p>
+            <h1 id="hero-title">오늘의 수고를,<br />간단한 <span>기록으로.</span></h1>
+            <p class="hero-description">오늘 안마를 얼마나 했는지 입력하세요.<br />건수부터 시간, 예상 금액까지<br class="mobile-break" /> 업무일지가 알아서 계산해 드려요.</p>
+            <a class="primary-link" href="#screens">앱 화면 살펴보기 <span aria-hidden="true">↗</span></a>
+            <div class="hero-note"><span aria-hidden="true">✓</span> 기록은 간단하게. 하루의 마무리는 가볍게.</div>
+          </div>
+          <figure class="hero-visual">
+            <img src="/images/massage/iphone-journal.webp" width="1120" height="1400" alt="안마사 업무일지 앱을 실행한 아이폰. 오늘의 업무 1건, 50분, 예상 금액 47,500원이 표시되어 있습니다." fetchpriority="high" />
+            <figcaption>당신의 하루가 차곡차곡 쌓이는 곳</figcaption>
+          </figure>
+        </section>
+
+        <section class="summary" aria-label="앱이 계산해 주는 정보">
+          <p>업무만 기록하세요.<br /><strong>합계는 맡겨두세요.</strong></p>
+          <div><span>얼마나 했는지</span><strong>안마 건수</strong></div>
+          <div><span>얼마나 일했는지</span><strong>총 안마 시간</strong></div>
+          <div><span>설정한 단가에 맞춰</span><strong>예상 금액</strong></div>
+        </section>
+
+        <section id="features" class="features section-wrap" aria-labelledby="features-title">
+          <div class="section-intro"><p class="eyebrow">LESS CALCULATING, MORE CLARITY</p><h2 id="features-title">일지에 필요한 것만,<br />간결하게 담았어요.</h2><p>안마사 본인의 업무 기록부터 원장님의 현황 확인까지.<br />반복되는 기록과 계산을 조금 더 편하게.</p></div>
+          <div class="feature-grid">{features.map((feature) => <article><span class="feature-number">{feature.number}</span><h3>{feature.title}</h3><p>{feature.text}</p></article>)}</div>
+        </section>
+
+        <section id="screens" class="screens section-wrap" aria-labelledby="screens-title">
+          <div class="screens-header"><div><p class="eyebrow">A CLOSER LOOK</p><h2 id="screens-title">한눈에 보고,<br />손쉽게 관리하세요.</h2></div><p>매일 사용하는 화면이니까,<br />필요한 정보를 보기 쉽게.</p></div>
+          <div class="screen-grid">{features.map((feature) => <article class="screen-card"><div class="screen-copy"><span class="screen-tag">{feature.tag === "하루 업무 현황" ? "월간 현황" : feature.tag}</span><h3>{feature.heading}</h3><p>{feature.detail}</p></div><div class="screen-stage"><div class="device"><img src={`/images/massage/${feature.image}.webp`} alt={feature.alt} width="590" height="1280" loading="lazy" /></div></div></article>)}</div>
+          <p class="image-note">실제 앱 화면입니다. 표시된 기록과 금액은 사용 예시예요. 상단 아이폰 이미지는 앱 화면을 바탕으로 제작한 연출 이미지입니다.</p>
+        </section>
+
+        <section class="closing section-wrap" aria-labelledby="closing-title"><img src="/appicons/massage.png" alt="" width="64" height="64" loading="lazy" /><p class="eyebrow">안마사 업무일지</p><h2 id="closing-title">수고한 하루,<br />기록은 가볍게 남기세요.</h2><p>오늘의 업무가 쌓여 내 일의 흐름이 됩니다.</p><a href="#main">처음으로 돌아가기 <span aria-hidden="true">↑</span></a></section>
+
+        <section id="contact" class="contact section-wrap" aria-labelledby="contact-title">
+          <div class="contact-intro">
+            <p class="eyebrow">CONTACT</p>
+            <h2 id="contact-title">궁금한 점이 있나요?</h2>
+            <p>앱 사용 중 불편한 점이나 제안하고 싶은 기능이 있다면<br />넥스트지로 연락해 주세요.</p>
+          </div>
+          <address>
+            <dl>
+              <div><dt>이메일</dt><dd><a href={`mailto:nextg1641@gmail.com?subject=${encodeURIComponent("안마사 업무일지 문의")}`}>nextg1641@gmail.com <span aria-hidden="true">↗</span></a></dd></div>
+              <div><dt>전화</dt><dd><a href="tel:+8227341641">02-734-1641 <span aria-hidden="true">↗</span></a></dd></div>
+              <div><dt>홈페이지</dt><dd><a href="https://nextg.kr/">넥스트지 <span aria-hidden="true">↗</span></a></dd></div>
+            </dl>
+          </address>
+        </section>
+      </main>
+      <footer><a href="/">NEXTG <span>Apps</span></a><p>안마사 업무일지 · 매일의 수고를 기록합니다.</p><span>© {new Date().getFullYear()} NEXTG</span></footer>
+    </MassageTheme>
+  </body>
+</html>
+
+<style>
+  :global(html:has(.site-header)) { scroll-behavior: smooth; scroll-padding-top: 24px; width: 100%; }
+  :global(body:has(.site-header)) { width: 100%; background: var(--bg-primary); color: var(--fg-normal); letter-spacing: -.025em; }
+  :global(body:has(.site-header) h1), :global(body:has(.site-header) h2), :global(body:has(.site-header) h3), :global(body:has(.site-header) p) { margin: 0; padding: 0; }
+  h1, h2 { color: var(--fg-heavy); }
+  h3, .brand, .summary div strong { color: var(--fg-bold); }
+  a { text-decoration: none; color: inherit; }
+  .skip-link { position: fixed; left: 16px; top: -80px; z-index: 10; background: var(--bg-accent-button); color: var(--fg-accent-button); padding: 14px 20px; border-radius: 8px; }
+  .skip-link:focus { top: 12px; }
+  .site-header { max-width: 1280px; margin: auto; padding: 25px 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--bg-focused); gap: 20px; }
+  .brand { display: flex; align-items: center; gap: 11px; font-weight: 750; font-size: 17px; white-space: nowrap; }
+  .brand img { border-radius: 11px; }
+  nav { display: flex; align-items: center; gap: 30px; font-size: 14px; font-weight: 550; }
+  nav a:hover, footer a:hover { color: var(--fg-accent); }
+  .all-apps { margin-left: 20px; } .all-apps span { margin-left: 8px; }
+  .hero { max-width: 1280px; margin: auto; padding: 62px 48px 64px; display: grid; grid-template-columns: 1.05fr 1fr; gap: 55px; align-items: center; }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .1em; color: var(--fg-accent); }
+  .hero .eyebrow { letter-spacing: .01em; display: flex; align-items: center; gap: 8px; font-size: 14px; }
+  .dot { width: 6px; height: 6px; background: var(--fg-accent); border-radius: 50%; }
+  h1 { font-size: clamp(42px, 4.5vw, 64px); line-height: 1.23; letter-spacing: -.055em; font-weight: 750; margin-top: 25px !important; word-break: keep-all; }
+  h1 span { color: var(--fg-accent); }
+  .hero-description { margin-top: 25px !important; font-size: 18px; line-height: 1.9; color: var(--fg-light); word-break: keep-all; }
+  .primary-link { display: inline-flex; margin-top: 35px; padding: 17px 23px; align-items: center; gap: 42px; background: var(--bg-accent-button); color: var(--fg-accent-button); border-radius: 7px; font-size: 15px; font-weight: 600; transition: background .2s; }
+  .primary-link:hover { background: color-mix(in srgb, var(--bg-accent-button) 85%, var(--fg-heavy)); }
+  .hero-note { margin-top: 18px; font-size: 12px; color: var(--fg-lighter); } .hero-note span { margin-right: 5px; }
+  .hero-visual { position: relative; margin: 0; }
+  .hero-visual img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 120px 120px 12px 12px; }
+  figcaption { font-size: 11px; color: var(--fg-lighter); text-align: center; margin-top: 12px; letter-spacing: .08em; }
+  .mobile-break { display: none; }
+  .summary { max-width: 1184px; margin: 0 auto; border-top: 1px solid var(--bg-focused); border-bottom: 1px solid var(--bg-focused); display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; padding: 32px 0; align-items: center; }
+  .summary p { line-height: 1.7; font-size: 16px; color: var(--fg-light); } .summary p strong { color: var(--fg-bold); font-weight: 650; }
+  .summary div { padding-left: 40px; border-left: 1px solid var(--bg-focused); display: flex; flex-direction: column; gap: 9px; }
+  .summary div span { color: var(--fg-lighter); font-size: 12px; } .summary div strong { font-size: 22px; font-weight: 650; }
+  .section-wrap { max-width: 1280px; margin: auto; padding: 100px 48px; }
+  h2 { font-size: 38px; line-height: 1.35; letter-spacing: -.045em; font-weight: 700; word-break: keep-all; }
+  .section-intro h2, .screens-header h2 { margin-top: 18px !important; }
+  .section-intro > p:last-child { color: var(--fg-light); margin-top: 20px !important; font-size: 16px; line-height: 1.8; }
+  .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 50px; }
+  .feature-grid article { border-top: 1px solid var(--bg-focused); padding-top: 20px; }
+  .feature-number { font-size: 12px; font-weight: 650; color: var(--fg-accent); }
+  h3 { font-size: 20px; line-height: 1.5; letter-spacing: -.03em; font-weight: 650; word-break: keep-all; }
+  .feature-grid h3 { margin-top: 23px !important; }
+  .feature-grid p { font-size: 15px; color: var(--fg-light); line-height: 1.85; margin-top: 12px !important; word-break: keep-all; }
+  .screens { padding-top: 60px; }
+  .screens-header { display: flex; justify-content: space-between; align-items: end; gap: 24px; }
+  .screens-header > p { color: var(--fg-light); font-size: 15px; line-height: 1.8; }
+  .screen-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
+  .screen-card { background: var(--bg-tertiary); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+  .screen-card:nth-child(2) { background: var(--bg-accent); } .screen-card:nth-child(3) { background: var(--bg-expanded-section); }
+  .screen-copy { padding: 30px 26px 28px; }
+  .screen-tag { font-size: 11px; font-weight: 650; color: var(--fg-accent); }
+  .screen-copy h3 { font-size: 20px; margin-top: 13px !important; }
+  .screen-copy p { color: var(--fg-light); line-height: 1.8; font-size: 14px; margin-top: 12px !important; word-break: keep-all; }
+  .screen-stage { padding: 0 35px; margin-top: auto; height: 475px; overflow: hidden; }
+  .device { max-width: 260px; margin: auto; padding: 6px; border-radius: 36px; background: var(--bg-accent-button); box-shadow: 0 0 0 1px var(--border-input), 0 15px 25px var(--bg-focused); }
+  .device img { display: block; width: 100%; height: auto; border-radius: 30px; }
+  .image-note { margin-top: 18px !important; color: var(--fg-lighter); font-size: 12px; line-height: 1.7; }
+  .closing { margin: 0 auto 65px; padding-top: 70px; padding-bottom: 70px; text-align: center; border-top: 1px solid var(--bg-focused); }
+  .closing img { border-radius: 16px; margin: 0 auto 20px; }
+  .closing h2 { margin-top: 17px !important; } .closing > p:not(.eyebrow) { margin-top: 20px !important; color: var(--fg-light); line-height: 1.8; }
+  .closing a { display: inline-flex; align-items: center; gap: 35px; margin-top: 30px; font-size: 14px; font-weight: 600; border-bottom: 1px solid var(--border-input); padding-bottom: 8px; }
+  .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; border-top: 1px solid var(--bg-focused); padding-top: 60px; padding-bottom: 80px; }
+  .contact h2 { margin-top: 18px !important; }
+  .contact-intro > p:last-child { margin-top: 18px !important; color: var(--fg-light); font-size: 15px; line-height: 1.8; word-break: keep-all; }
+  .contact address { font-style: normal; min-width: 0; }
+  .contact dl { margin: 0; }
+  .contact dl > div { display: grid; grid-template-columns: 80px minmax(0, 1fr); align-items: baseline; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--bg-focused); }
+  .contact dt { font-size: 13px; color: var(--fg-lighter); }
+  .contact dd { margin: 0; min-width: 0; }
+  .contact dd a { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 16px; font-weight: 550; color: var(--fg-accent); overflow-wrap: anywhere; }
+  .contact dd a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .contact dd a span { flex-shrink: 0; }
+  footer { max-width: 1184px; margin: auto; padding: 25px 0 35px; border-top: 1px solid var(--bg-focused); display: flex; justify-content: space-between; align-items: center; gap: 20px; color: var(--fg-lighter); font-size: 11px; }
+  footer a { font-size: 17px; font-weight: 800; letter-spacing: -.04em; color: var(--color-logo); } footer a span { font-weight: 400; }
+  @media (min-width: 1440px) { .hero { padding-top: 75px; padding-bottom: 75px; } }
+  @media (max-width: 1000px) {
+    .site-header { padding-inline: 28px; } .hero { padding-inline: 28px; gap: 30px; } h1 { font-size: 46px; }
+    .summary { margin-inline: 28px; } .summary div { padding-left: 24px; } .summary div strong { font-size: 19px; }
+    .section-wrap { padding-inline: 28px; } .feature-grid { gap: 25px; } .screen-grid { gap: 14px; } .screen-copy { padding: 24px 18px; } .screen-stage { padding-inline: 20px; height: 375px; } footer { margin-inline: 28px; }
+  }
+  @media (max-width: 700px) {
+    .site-header { padding: 18px 22px; } .brand { font-size: 15px; } .brand img { width: 34px; height: 34px; } nav { gap: 16px; font-size: 12px; } nav .all-apps { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 48px 24px 38px; gap: 38px; } .hero-copy { text-align: center; } .hero .eyebrow { justify-content: center; font-size: 12px; } h1 { font-size: clamp(36px, 9vw, 52px); margin-top: 22px !important; }
+    .hero-description { font-size: 16px; margin-top: 20px !important; } .mobile-break { display: initial; } .primary-link { margin-top: 26px; } .hero-note { font-size: 11px; }
+    .hero-visual { width: 100%; max-width: 430px; margin: auto; } .hero-visual img { border-radius: 90px 90px 10px 10px; }
+    .summary { margin-inline: 24px; grid-template-columns: repeat(3, 1fr); gap: 25px 10px; padding-block: 25px; } .summary p { grid-column: 1 / -1; text-align: center; } .summary p br { display: none; } .summary p strong { margin-left: 5px; } .summary div { text-align: center; padding-left: 0; } .summary div:nth-child(2) { border-left: none; } .summary div span { font-size: 10px; } .summary div strong { font-size: 17px; }
+    .section-wrap { padding: 65px 24px; } h2 { font-size: 30px; } .section-intro > p:last-child { font-size: 14px; } .eyebrow { font-size: 10px; }
+    .feature-grid { grid-template-columns: 1fr; gap: 27px; margin-top: 35px; } .feature-grid h3 { margin-top: 12px !important; font-size: 19px; } .feature-grid p { margin-top: 8px !important; font-size: 14px; }
+    .screens { padding-top: 20px; } .screens-header { display: block; } .screens-header > p { margin-top: 18px !important; font-size: 14px; } .screen-grid { grid-template-columns: 1fr; gap: 24px; margin-top: 28px; }
+    .screen-copy { padding: 28px; } .screen-copy h3 { font-size: 22px; } .screen-stage { height: 460px; padding-inline: 40px; } .device { max-width: 260px; } .image-note { font-size: 11px; }
+    .closing { margin-bottom: 25px; padding-top: 50px; padding-bottom: 45px; } .closing > p:not(.eyebrow) { font-size: 14px; }
+    .contact { grid-template-columns: 1fr; gap: 25px; padding-top: 45px; padding-bottom: 50px; }
+    .contact-intro > p:last-child { font-size: 14px; }
+    .contact dl > div { grid-template-columns: 60px minmax(0, 1fr); gap: 14px; }
+    .contact dd a { font-size: 14px; }
+    footer { margin-inline: 24px; flex-wrap: wrap; gap: 14px; } footer p { order: 3; width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) { :global(html:has(.site-header)) { scroll-behavior: auto; } .primary-link { transition: none; } }
+</style>
+
