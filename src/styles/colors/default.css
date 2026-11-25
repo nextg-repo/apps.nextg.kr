@@ -1,0 +1,103 @@
+:root {
+  --bg-primary:
+    light-dark(
+      hsl(220, 20%, 97%),
+      hsl(220, 15%, 10%)
+    );
+  --bg-default-button: light-dark(
+    hsl(220,5%,100%),
+    hsl(220,10%,20%)
+  );
+  --bg-accent-button:hsl(220, 79%, 26%);
+  --fg-accent-button:hsl(220, 79%, 10%);
+--bg-switch-thumb:hsl(220, 50%, 50%);
+  --bg-accent:
+    light-dark(
+      hsl(220, 35%, 92.5%),
+      hsl(220, 35%, 25%)
+    );
+
+  --bg-focused:
+    light-dark(
+      color-mix(in srgb, hsl(0,0%,0%), transparent 90%),
+      color-mix(in srgb, hsl(0,0%,100%), transparent 10%)
+    );
+
+  --bg-secondary:
+    light-dark(
+      hsl(220, 25%, 100%),
+      hsl(220, 15%, 13%)
+    );
+  --bg-tertiary:
+    light-dark(
+      hsl(220, 25%, 100%),
+      hsl(220, 15%, 23%)
+    );
+
+  --bg-tab:
+    light-dark(
+      hsl(220, 25%, 100%),
+      hsl(220, 20%, 13%)
+    );
+  --bg-tab-selected:
+    light-dark(
+      hsl(220, 25%, 100%),
+      hsl(220, 25%, 17%)
+    );
+
+  --bg-expanded-section:
+    light-dark(
+      hsl(220, 25%, 95%),
+      hsl(220, 25%, 15%)
+    );
+
+  --fg-accent:
+    light-dark(
+      hsl(220, 79%, 26%),
+      hsl(220, 79%, 78%)
+    );
+  --color-logo: light-dark(
+    #0E3178,
+    #487EEA
+  );
+  --fg-current:
+    light-dark(
+        hsl(340, 79%, 60%),
+        hsl(220, 79%, 78%)
+    );
+    
+  --fg-heavy:
+    light-dark(
+      hsl(180, 15%, 0%),
+      hsl(180, 15%, 100%)
+    );
+
+  --fg-bolder:
+    light-dark(
+      hsl(180, 15%, 5%),
+      hsl(180, 15%, 97.5%)
+    );
+  --fg-bold:
+    light-dark(
+      hsl(180, 15%, 10%),
+      hsl(180, 15%, 90%)
+    );
+
+  --fg-normal:
+    light-dark(
+      hsl(180, 15%, 15%),
+      hsl(180, 15%, 85%)
+    );
+
+  --fg-light:
+    light-dark(
+      hsl(180, 15%, 20%),
+      hsl(180, 15%, 80%)
+    );
+
+  --fg-lighter:
+    light-dark(
+      hsl(180, 15%, 60%),
+      hsl(180, 0%, 60%)
+    );
+}

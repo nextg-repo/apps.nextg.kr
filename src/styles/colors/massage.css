@@ -1,0 +1,44 @@
+:root {
+  color-scheme: light dark;
+
+  /* 화면과 섹션 */
+  --bg-primary: light-dark(#F6F4ED, #1C211D);
+  --bg-secondary: light-dark(#FFFDF7, #252C26);
+  --bg-tertiary: light-dark(#F0EEE5, #303930);
+  --bg-expanded-section: light-dark(#F0F0E7, #2C352D);
+
+  /* 탭과 선택 상태 */
+  --bg-tab: var(--bg-secondary);
+  --bg-accent: light-dark(#E5EBE0, #354337);
+  --bg-tab-selected: var(--bg-accent);
+  --bg-focused: light-dark(
+    rgb(0 0 0 / 10%),
+    rgb(255 255 255 / 10%)
+  );
+
+  /* 버튼과 스위치 */
+  --bg-default-button: var(--bg-secondary);
+  --bg-accent-button: #52634F;
+  --fg-accent-button: #E0DAC9;
+  --border-accent-button: light-dark(#52634F, #B6C6AF);
+  --bg-switch-thumb: light-dark(#52634F, #E0DAC9);
+
+  /* 강조 텍스트와 로고 */
+  --fg-accent: light-dark(#52634F, #B6C6AF);
+  --color-logo: var(--fg-accent);
+  --fg-current: var(--fg-accent);
+
+  /* 본문 */
+  --fg-heavy: light-dark(#171C16, #FFFDF7);
+  --fg-bolder: light-dark(#1D231C, #F5F3E9);
+  --fg-bold: light-dark(#252B24, #E9E7DD);
+  --fg-normal: light-dark(#353D34, #D5DCD0);
+  --fg-light: light-dark(#50594D, #BFC7B8);
+  --fg-lighter: light-dark(#5B6658, #A3AF9E);
+
+  /* 입력 필드 */
+  --bg-input: light-dark(#F0EEE5, #1E251F);
+  --fg-placeholder: var(--fg-lighter);
+  --border-input: light-dark(#7B8576, #788775);
+  --border-focus: var(--fg-accent);
+}
