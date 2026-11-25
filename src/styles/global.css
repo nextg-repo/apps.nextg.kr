@@ -1,0 +1,41 @@
+@import "./colors/default.css";
+@import "tailwindcss";
+
+@font-face {
+  font-family: "나눔스퀘어 네오";
+  src: url("./NanumSquare_Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+	font-family: 'Pretendard Variable';
+	font-weight: 45 920;
+	font-style: normal;
+	font-display: swap;
+	src: url('./PretendardVariable.woff2') format('woff2-variations');
+}
+
+:root {
+  font-family: "Pretendard Variable", sans-serif;
+  font-weight: 300;
+  font-variant-numeric: tabular-nums;
+  color-scheme: light dark;
+  letter-spacing: 0.075em;
+}
+
+* {
+  box-sizing: border-box;
+  &:not(h1,h2,h3,h4,h5,h6,p,ul,ol,li) {padding:0; margin:0;}
+}
+html, body { 
+  background-color: var(--bg-primary);
+  width: 100vw; min-height: 100vh; padding: 0; margin: 0;
+}
+*:focus { outline:auto; outline-offset: 0.1em; }
+h1 { font-size: 2.0em; padding: 0.1em; font-weight: 1000;}
+h2 { font-size: 1.8em; padding: 0.1em; font-weight: 800;}
+h3 { font-size: 1.6em; padding: 0.1em; font-weight: 700;}
+h4 { font-size: 1.4em; padding: 0.1em; font-weight: 700;}
+h5 { font-size: 1.2em; padding: 0.1em; font-weight: 500;}
+h6 { font-size: 1.2em; padding: 0.1em; font-weight: 500;}
